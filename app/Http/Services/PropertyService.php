@@ -93,7 +93,7 @@ class PropertyService
         $value = (int) $property->value;
         $discount = (int) $property->discount;
 
-        if ($discount < 1 && $value < 1) {
+        if ($discount < 1 || $value < 1) {
             return $property;
         }
 
