@@ -19,10 +19,11 @@ class PropertyRepository extends Repository
      * @param int $ownerId
      * @return int
      */
-    public function countPropertiesByOwnerId($ownerId): int
+    public function countPropertiesNotPurchasedByOwnerId($ownerId): int
     {
         $query = $this->query();
-        $query->where('owner_id', '=', $ownerId);
+        $query->where('owner_id', '=', $ownerId)
+            ->where('purchased', '=', false);
 
         $response = $this->makeQuery($query, 0, false);
 

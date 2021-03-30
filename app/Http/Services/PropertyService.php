@@ -33,10 +33,10 @@ class PropertyService
     public function createProperty(array $data): Property
     {
         $ownerId = $data['owner_id'];
-        $ownerProperties = $this->repository->countPropertiesByOwnerId($ownerId);
+        $ownerProperties = $this->repository->countPropertiesNotPurchasedByOwnerId($ownerId);
 
-        if ($ownerProperties > 3) {
-            throw new \Exception("The owner already has 3 unsold properties", 422);
+        if ($ownerProperties >= 3) {
+            throw new \Exception("The owner already has 3 not purchased properties", 422);
         }
 
         return $this->repository->store($data);

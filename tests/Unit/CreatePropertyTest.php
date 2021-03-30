@@ -33,10 +33,10 @@ class CreatePropertyTest extends TestCase
             );
     }
 
-    public function test_expect_error_when_the_owner_has_more_than_three_unsold_properties()
+    public function test_expect_error_when_the_owner_has_more_than_three_not_purchased_properties()
     {
         $user = User::factory()
-            ->has(Property::factory()->count(4))
+            ->has(Property::factory()->count(10))
             ->create();
 
         $data = [
